@@ -1,11 +1,13 @@
 import { Request, Response } from "express";
 import userCreateService from "../../services/users/userCreate.service";
 
-const userCreateController = (req: Request, res: Response) => {
+const userCreateController = async (req: Request, res: Response) => {
     try {
-        const {name, email, telephone, registerDate} = req.body
+        const {name, email, telephone} = req.body
 
-        const newUser = userCreateService({name, email, telephone, registerDate})
+        const registerDate = new Date()
+
+        const newUser = await userCreateService({name, email, telephone, registerDate})
 
         return res.status(201).send(newUser)
 

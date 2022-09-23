@@ -3,12 +3,12 @@ export interface IUser {
     name: string
     email: string
     telephone: string
-    registerDate: number
+    registerDate: Date
 }
 
 export interface IUserCreate {
     name: string
     email: string
     telephone: string
-    registerDate: number
+    registerDate: Date
 }
