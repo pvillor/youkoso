@@ -11,7 +11,8 @@ const userRetrieveService = async ({ authorization }: IUserRetrieve) => {
         throw new Error('Authorization token not found')
     }
 
-    const token = authorization.split('')[1]
+    const token = authorization
+    console.log(token)
 
     const account = jwt.verify(token, String(process.env.JWT_SECRET), (err, decoded) => {
         if(!decoded){
@@ -20,8 +21,10 @@ const userRetrieveService = async ({ authorization }: IUserRetrieve) => {
 
         const user = users.find(user => user.email === (<any>decoded).email)
 
+        // console.log(user)
         return user
     })
+    // console.log(account)
 
     return account
 }
