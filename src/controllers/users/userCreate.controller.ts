@@ -3,11 +3,11 @@ import userCreateService from "../../services/users/userCreate.service";
 
 const userCreateController = async (req: Request, res: Response) => {
     try {
-        const {name, email, telephone} = req.body
+        const {name, email, password, telephone} = req.body
 
         const registerDate = new Date()
 
-        const newUser = await userCreateService({name, email, telephone, registerDate})
+        const newUser = await userCreateService({name, email, password, telephone, registerDate})
 
         return res.status(201).send(newUser)
 
