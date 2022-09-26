@@ -18,7 +18,3 @@ export interface IUserLogin {
     email: string
     password: string
 }
-
-export interface IUserRetrieve {
-    authorization?: string
-}

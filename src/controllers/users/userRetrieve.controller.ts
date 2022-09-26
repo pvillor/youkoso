@@ -3,7 +3,9 @@ import userRetrieveService from "../../services/users/userRetrieve.service"
 
 const userRetrieveController = async (req: Request, res: Response) => {
     try {
-        const user = await userRetrieveService({authorization: req.headers.authorization})
+        const email = req.userEmail
+
+        const user = await userRetrieveService(email)
 
         return res.send(user)
 
