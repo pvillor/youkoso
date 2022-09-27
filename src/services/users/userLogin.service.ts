@@ -1,5 +1,6 @@
 import { IUserLogin } from "../../interfaces/users";
 import { AppDataSource } from "../../data-source";
+import { AppError } from '../../errors/appError'
 import { User } from "../../entities/user.entity";
 import bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken";
@@ -11,10 +12,10 @@ const userLoginService = async ({ email, password }: IUserLogin) => {
     const account = users.find(user => user.email === email)
 
     if(!account){
-        throw new Error('Wrong email or password')
+        throw new AppError(403, 'Wrong email or password')
     }
     if(!bcrypt.compareSync(password, account.password)){
-        throw new Error('Wrong email or password')
+        throw new AppError(403, 'Wrong email or password')
     }
 
     const token = jwt.sign(

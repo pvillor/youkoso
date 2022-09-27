@@ -1,4 +1,5 @@
 import { Request, Response } from "express"
+import { AppError, handleError } from "../../errors/appError"
 import userRetrieveService from "../../services/users/userRetrieve.service"
 
 const userRetrieveController = async (req: Request, res: Response) => {
@@ -10,11 +11,8 @@ const userRetrieveController = async (req: Request, res: Response) => {
         return res.send(user)
 
     } catch (err) {
-        if(err instanceof Error){
-            return res.status(401).send({
-                'error': err.name,
-                'message': err.message
-            })
+        if(err instanceof AppError) {
+            handleError(err, res)
         }
     }
 }
