@@ -7,13 +7,13 @@ import userRetrieveController from "../controllers/users/userRetrieve.controller
 import userUpdateController from "../controllers/users/userUpdate.controller"
 import { authUser } from "../middlewares/authUser.middleware"
 
-const routes = Router()
+const userRoutes = Router()
 
-routes.get('/users', authUser, userListController)
-routes.get('/users/me', authUser, userRetrieveController)
-routes.post('/users', userCreateController)
-routes.post('/users/login', userLoginController)
-routes.patch('/users/me', authUser, userUpdateController)
-routes.delete('/users/me', authUser, userDeleteController)
+userRoutes.get('/users', authUser, userListController)
+userRoutes.get('/users/me', authUser, userRetrieveController)
+userRoutes.post('/users', userCreateController)
+userRoutes.post('/users/login', userLoginController)
+userRoutes.patch('/users/me', authUser, userUpdateController)
+userRoutes.delete('/users/me', authUser, userDeleteController)
 
-export default routes
+export default userRoutes

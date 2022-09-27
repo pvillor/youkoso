@@ -1,12 +1,14 @@
 import express, { Request, Response, NextFunction } from 'express'
 import { AppError } from './errors/appError'
-import routes from './routes/user.routes'
+import contactRoutes from './routes/contact.routes'
+import userRoutes from './routes/user.routes'
 
 const app = express()
 
 app.use(express.json())
 
-app.use(routes)
+app.use(userRoutes)
+app.use(contactRoutes)
 
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
     if(err instanceof AppError){
